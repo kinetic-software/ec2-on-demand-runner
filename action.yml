@@ -1,0 +1,22 @@
+name: 'Provision Custom Runner'
+description: 'Creates an EC2 instance ready to run a GitHub action pipeline'
+inputs:
+  runner-group:
+    description: 'Name of the runner group to add this new runner to (e.g. qa-pool)'
+    required: true
+  github-token:
+    description: 'GitHub PAT with permission to generate-jitconfig'
+    required: true
+  security-groups:
+    description: 'Comma separate list of security groups to join'
+    required: true
+  subnet:
+    description: 'Subnet to place instance in'
+    required: true
+  instance-type:
+    description: 'Instance size (default t3.xlarge)'
+    required: false
+    default: 't3.xlarge'
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
